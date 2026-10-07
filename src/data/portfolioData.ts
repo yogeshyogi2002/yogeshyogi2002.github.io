@@ -26,7 +26,7 @@ export const PERSONAL_INFO = {
     { name: "Deutsch", level: { en: "B2 (En route to C1)", de: "B2 (Auf dem Weg zu C1)" } }
   ],
   linkedinUrl: "https://www.linkedin.com/in/yogesh2002/",
-  githubUrl: "https://github.com/yogesh2002",
+  githubUrl: "https://github.com/yogeshyogi2002",
   status: {
     en: "Available for Werkstudent / Internship (Praktikum) / Master Thesis in Germany",
     de: "Verfügbar für Werkstudententätigkeit / Praktikum / Masterarbeit in Deutschland"

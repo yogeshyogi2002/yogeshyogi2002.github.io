@@ -195,12 +195,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 <Check className="w-6 h-6" />
               </div>
               <h4 className="text-lg font-bold text-white">
-                {currentLang === 'de' ? 'Vielen Dank für Ihre Anfrage!' : 'Thank you for reaching out!'}
+                {currentLang === 'de' ? 'Vielen Dank für Ihre Nachricht' : 'Thank you for your message'}
               </h4>
               <p className="text-xs text-slate-300 max-w-md mx-auto">
                 {currentLang === 'de'
-                  ? `Ihre Nachricht wurde an Yogesh gesendet. Er meldet sich in Kürze per E-Mail bei Ihnen. Sie erreichen ihn auch direkt unter ${PERSONAL_INFO.email}.`
-                  : `Your message has been sent to Yogesh. He will reply to you by email shortly. You can also reach him directly at ${PERSONAL_INFO.email}.`}
+                  ? `Ihre Nachricht ist erfolgreich eingegangen. Yogesh Radhakrishnan wird sich innerhalb von 1–2 Werktagen unter der angegebenen E-Mail-Adresse bei Ihnen melden. In dringenden Fällen erreichen Sie ihn direkt unter ${PERSONAL_INFO.email}.`
+                  : `Your message has been received successfully. Yogesh Radhakrishnan will respond to the email address you provided within 1–2 business days. For urgent matters, please contact him directly at ${PERSONAL_INFO.email}.`}
               </p>
               
               <div className="pt-2 flex flex-wrap justify-center gap-3">

@@ -87,19 +87,12 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({
                 <CheckCircle2 className="w-7 h-7" />
               </div>
               <h2 className="text-2xl font-extrabold text-white">
-                {currentLang === 'de' ? 'Vielen Dank für Ihre Anfrage' : 'Thank you for your request'}
+                {currentLang === 'de' ? 'Anfrage erhalten – vielen Dank' : 'Request received – thank you'}
               </h2>
               <p className="text-sm text-slate-300 leading-relaxed">
                 {currentLang === 'de'
-                  ? 'Ihre Anfrage ist erfolgreich eingegangen. Yogesh Radhakrishnan wird sie prüfen und Ihnen seinen vollständigen Lebenslauf innerhalb von 1–2 Werktagen an die angegebene E-Mail-Adresse senden.'
-                  : 'Your request has been received successfully. Yogesh Radhakrishnan will review it and send his complete CV to the email address you provided within 1–2 business days.'}
-              </p>
-              <p className="text-xs text-slate-400">
-                {currentLang === 'de' ? 'In dringenden Fällen erreichen Sie ihn direkt unter ' : 'For urgent matters, please contact him directly at '}
-                <a href={`mailto:${PERSONAL_INFO.email}`} className="text-amber-300 hover:text-amber-200 underline">
-                  {PERSONAL_INFO.email}
-                </a>
-                .
+                  ? 'Yogesh Radhakrishnan wird Ihnen seinen Lebenslauf in Kürze per E-Mail zusenden.'
+                  : 'Yogesh Radhakrishnan will send his CV to your email shortly.'}
               </p>
               <button
                 onClick={onClose}

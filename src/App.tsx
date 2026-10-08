@@ -25,27 +25,6 @@ export default function App() {
 
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
-  // Gated CV access state - remembers in session
-  const [isCvUnlocked, setIsCvUnlocked] = useState<boolean>(() => {
-    if (typeof window !== 'undefined') {
-      try {
-        return sessionStorage.getItem('cv_unlocked') === 'true';
-      } catch (e) {
-        return false;
-      }
-    }
-    return false;
-  });
-
-  const handleUnlockCv = () => {
-    setIsCvUnlocked(true);
-    try {
-      sessionStorage.setItem('cv_unlocked', 'true');
-    } catch (e) {
-      // ignore
-    }
-  };
-
   const handleNavigateToContact = () => {
     setIsResumeOpen(false);
     const el = document.getElementById('contact');
@@ -117,23 +96,17 @@ export default function App() {
         <ArticlesSection currentLang={currentLang} />
 
         {/* Direct Contact & Inquiry Form */}
-        <ContactSection
-          currentLang={currentLang}
-          onUnlockCv={handleUnlockCv}
-          onOpenCvModal={() => setIsResumeOpen(true)}
-        />
+        <ContactSection currentLang={currentLang} />
       </main>
 
       {/* Footer */}
       <Footer currentLang={currentLang} />
 
-      {/* Printable / Downloadable Resume Modal (Gated with Request Form) */}
+      {/* CV Request Modal: requests are forwarded to Yogesh's inbox, the CV itself is never shown */}
       <ResumeModal
         isOpen={isResumeOpen}
         onClose={() => setIsResumeOpen(false)}
         currentLang={currentLang}
-        isUnlocked={isCvUnlocked}
-        onUnlock={handleUnlockCv}
         onRequestViaMailMe={handleNavigateToContact}
       />
     </div>

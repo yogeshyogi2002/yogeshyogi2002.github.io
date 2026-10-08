@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Copy, Check, Linkedin, ArrowRight, Clock, FileText, Download } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Copy, Check, Linkedin, ArrowRight, Clock } from 'lucide-react';
 import { Language } from '../types';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import { sendToInbox } from '../lib/sendToInbox';
 
 interface ContactSectionProps {
   currentLang: Language;
-  onUnlockCv?: () => void;
-  onOpenCvModal?: () => void;
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({
   currentLang,
-  onUnlockCv,
-  onOpenCvModal,
 }) => {
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [formData, setFormData] = useState({
@@ -24,6 +21,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedSuccess, setSubmittedSuccess] = useState(false);
+  const [sendFailed, setSendFailed] = useState(false);
 
   const handleCopy = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
@@ -31,20 +29,31 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     setTimeout(() => setCopiedField(null), 2500);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSendFailed(false);
 
-    // If this is a CV request or general contact, auto-unlock CV for requester
-    if (onUnlockCv) {
-      onUnlockCv();
-    }
-
-    // Simulate clean dispatch
-    setTimeout(() => {
-      setIsSubmitting(false);
+    const isCv = formData.roleInterest === 'cv_request';
+    try {
+      await sendToInbox(
+        `${isCv ? '[CV Request]' : `[Inquiry: ${formData.roleInterest}]`} ${formData.name} (${formData.company || 'Direct'})`,
+        formData.email,
+        {
+          Name: formData.name,
+          Email: formData.email,
+          Company: formData.company,
+          Topic: formData.roleInterest,
+          Message: formData.message,
+          Source: 'Portfolio website – contact form',
+        }
+      );
       setSubmittedSuccess(true);
-    }, 800);
+    } catch {
+      setSendFailed(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleMailtoBackup = () => {
@@ -176,7 +185,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             <p className="text-xs text-slate-400 font-mono">
               {currentLang === 'de'
                 ? 'Füllen Sie das Formular aus, um Yogesh direkt eine Nachricht oder Lebenslaufanfrage zu senden.'
-                : 'Fill out this form to mail Yogesh directly and unlock his CV.'}
+                : 'Fill out this form to message Yogesh directly or request his CV.'}
             </p>
           </div>
 
@@ -190,28 +199,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               </h4>
               <p className="text-xs text-slate-300 max-w-md mx-auto">
                 {currentLang === 'de'
-                  ? `Ihre Nachricht wurde vorbereitet. Sie können Yogesh auch direkt unter ${PERSONAL_INFO.email} erreichen. Ihr Lebenslauf-Zugang ist jetzt freigeschaltet.`
-                  : `Your message has been processed. You can also mail Yogesh directly at ${PERSONAL_INFO.email}. CV access has been granted.`}
+                  ? `Ihre Nachricht wurde an Yogesh gesendet. Er meldet sich in Kürze per E-Mail bei Ihnen. Sie erreichen ihn auch direkt unter ${PERSONAL_INFO.email}.`
+                  : `Your message has been sent to Yogesh. He will reply to you by email shortly. You can also reach him directly at ${PERSONAL_INFO.email}.`}
               </p>
               
               <div className="pt-2 flex flex-wrap justify-center gap-3">
-                {onOpenCvModal && (
-                  <button
-                    onClick={onOpenCvModal}
-                    className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 text-xs font-bold font-mono flex items-center gap-2 transition-all shadow-md shadow-amber-500/20 cursor-pointer"
-                  >
-                    <FileText className="w-4 h-4" />
-                    <span>{currentLang === 'de' ? 'Lebenslauf jetzt öffnen & herunterladen' : 'View & Download CV Now'}</span>
-                  </button>
-                )}
-
-                <button
-                  onClick={handleMailtoBackup}
-                  className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold font-mono border border-slate-700 transition-colors cursor-pointer"
-                >
-                  {currentLang === 'de' ? 'Im Mail-Client öffnen' : 'Open in Email Client'}
-                </button>
-
                 <button
                   onClick={() => setSubmittedSuccess(false)}
                   className="px-4 py-2 rounded-lg bg-slate-900 text-slate-400 text-xs font-mono hover:text-slate-200 transition-colors cursor-pointer"
@@ -301,6 +293,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   className="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white placeholder:text-slate-500 focus:outline-none focus:border-amber-400 transition-colors resize-none"
                 />
               </div>
+
+              {sendFailed && (
+                <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/40 text-red-200 font-sans">
+                  {currentLang === 'de' ? 'Senden fehlgeschlagen. ' : 'Sending failed. '}
+                  <button type="button" onClick={handleMailtoBackup} className="underline text-amber-300 hover:text-amber-200 cursor-pointer">
+                    {currentLang === 'de' ? 'Stattdessen per E-Mail-Programm senden' : 'Send via your email app instead'}
+                  </button>
+                </div>
+              )}
 
               <div className="pt-2 flex flex-col sm:flex-row items-center gap-3 justify-between">
                 <span className="text-[11px] text-slate-400">

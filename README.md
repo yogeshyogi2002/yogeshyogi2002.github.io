@@ -1,6 +1,6 @@
 # Yogesh Radhakrishnan – Robotics, Embedded & Automotive Portfolio
 
-**Live site:** https://yogeshyogi2002.github.io
+**Live site:** https://yogeshr.de
 
 Personal engineering portfolio of Yogesh Radhakrishnan, M.Sc. Information and Electrical Engineering student at Hochschule Wismar, Germany. It covers robotics (ROS 2, micro-ROS, motor control), embedded firmware (C/C++, FreeRTOS, Zephyr) and automotive ECU software (CAN FD, UDS, ISO 26262).
 

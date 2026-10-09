@@ -691,31 +691,31 @@ export const EXPERIENCES: ExperienceItem[] = [
     },
     type: "academic",
     description: {
-      en: "Pursuing M.Sc. Information and Electrical Engineering (Grade: 1.7) with research focus on autonomous robotics firmware, ROS 2 navigation stacks, hydrogen fuel-cell embedded controls, and defence-grade ruggedized systems — domains at the forefront of Germany's industrial demand.",
-      de: "M.Sc. Informations- und Elektrotechnik (Note: 1,7) mit Forschungsschwerpunkten auf autonomer Robotik-Firmware, ROS 2 Navigations-Stacks, Wasserstoff-Brennstoffzellen-Steuerungen und verteidigungstauglichen robusten Systemen — Schlüsseltechnologien der deutschen Industrienachfrage."
+      en: "Pursuing M.Sc. Information and Electrical Engineering (Grade: 1.7) with research focus on autonomous robotics firmware, ROS 2 navigation stacks, hydrogen fuel-cell embedded controls, and safety-critical real-time systems — domains at the forefront of Germany's industrial demand.",
+      de: "M.Sc. Informations- und Elektrotechnik (Note: 1,7) mit Forschungsschwerpunkten auf autonomer Robotik-Firmware, ROS 2 Navigations-Stacks, Wasserstoff-Brennstoffzellen-Steuerungen und sicherheitskritischen Echtzeitsystemen — Schlüsseltechnologien der deutschen Industrienachfrage."
     },
     highlights: {
       en: [
-        "Developed ROS 2 Humble navigation stacks (Nav2, SLAM Toolbox, robot_localization) on Zephyr RTOS-based embedded targets for autonomous mobile robot prototypes in defence reconnaissance scenarios.",
+        "Developed ROS 2 Humble navigation stacks (Nav2, SLAM Toolbox, robot_localization) on Zephyr RTOS-based embedded targets for autonomous mobile robot prototypes.",
         "Engineered real-time hydrogen fuel-cell monitoring firmware on STM32H7, implementing CAN FD telemetry for stack voltage, membrane humidity, and thermal runaway detection — aligned with Germany's National Hydrogen Strategy.",
         "Designed safety-critical sensor fusion pipelines (LiDAR + IMU + wheel odometry) using micro-ROS on ARM Cortex-M7, achieving < 2 cm localization accuracy for indoor warehouse autonomy demonstrators.",
         "Researched bi-directional AC-DC digital control algorithms on TI C2000 DSPs, validating PWM switching behavior at 50 kHz for green energy power conversion applications.",
-        "Built embedded cluster display HMI prototypes using TouchGFX and Qt Creator, connected to live CAN telemetry feeds for defence vehicle dashboard demonstrators.",
+        "Built embedded cluster display HMI prototypes using TouchGFX and Qt Creator, connected to live CAN telemetry feeds for automotive dashboard demonstrators.",
         "Authored academic papers on deterministic real-time task scheduling in safety-critical microcontrollers and presented at faculty research symposiums.",
-        "Explored Zephyr RTOS device-tree overlays and Kconfig-based board support packages for custom RISC-V SoCs targeting European defence robotics platforms."
+        "Explored Zephyr RTOS device-tree overlays and Kconfig-based board support packages for custom RISC-V SoCs targeting robotics platforms."
       ],
       de: [
-        "Entwicklung von ROS 2 Humble Navigations-Stacks (Nav2, SLAM Toolbox, robot_localization) auf Zephyr RTOS-basierten Embedded-Targets für autonome mobile Roboter-Prototypen in Verteidigungsaufklärungsszenarien.",
+        "Entwicklung von ROS 2 Humble Navigations-Stacks (Nav2, SLAM Toolbox, robot_localization) auf Zephyr RTOS-basierten Embedded-Targets für autonome mobile Roboter-Prototypen.",
         "Konzeption von Echtzeit-Firmware zur Überwachung von Wasserstoff-Brennstoffzellen auf STM32H7 mit CAN FD Telemetrie für Stapelspannung, Membranfeuchtigkeit und thermische Durchgehschutz-Erkennung — abgestimmt auf die Nationale Wasserstoffstrategie Deutschlands.",
         "Design sicherheitskritischer Sensorfusions-Pipelines (LiDAR + IMU + Radodometrie) mittels micro-ROS auf ARM Cortex-M7, mit < 2 cm Lokalisierungsgenauigkeit für Indoor-Lagerautonomie-Demonstratoren.",
         "Forschung an bidirektionalen AC/DC-Regelalgorithmen auf TI C2000 DSPs mit 50-kHz-PWM-Schaltfrequenzvalidierung für Anwendungen der grünen Energieumwandlung.",
-        "Entwicklung von Kombiinstrument-HMI-Prototypen mit TouchGFX und Qt Creator, angebunden an Live-CAN-Telemetrie für Verteidigungsfahrzeug-Dashboard-Demonstratoren.",
+        "Entwicklung von Kombiinstrument-HMI-Prototypen mit TouchGFX und Qt Creator, angebunden an Live-CAN-Telemetrie für Fahrzeug-Dashboard-Demonstratoren.",
         "Erstellung wissenschaftlicher Arbeiten zur deterministischen Echtzeit-Task-Planung in sicherheitskritischen Mikrocontrollern und Präsentation auf Forschungssymposien.",
-        "Evaluierung von Zephyr RTOS Device-Tree-Overlays und Kconfig-basierten Board-Support-Paketen für kundenspezifische RISC-V SoCs in europäischen Verteidigungsrobotik-Plattformen."
+        "Evaluierung von Zephyr RTOS Device-Tree-Overlays und Kconfig-basierten Board-Support-Paketen für kundenspezifische RISC-V SoCs in Robotik-Plattformen."
       ]
     },
     techStack: ["ROS 2 Humble", "Nav2 / SLAM", "micro-ROS", "Zephyr RTOS", "STM32H7", "TI C2000 DSP", "TouchGFX", "Qt Creator", "MATLAB / Simulink", "LiDAR / IMU Fusion", "CAN FD", "Hydrogen Fuel-Cell Systems"],
-    standards: ["ISO 26262", "DIN EN 62282 (Fuel Cells)", "NATO STANAG (Defence)", "Hochschule Wismar Academic Standards"]
+    standards: ["ISO 26262", "DIN EN 62282 (Fuel Cells)", "Hochschule Wismar Academic Standards"]
   },
   {
     id: "exp-2",
